@@ -1,0 +1,154 @@
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eaeaea;
+
+  .add-address-new {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: #ec407a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ff7043;
+    }
+
+    svg {
+      margin-right: 6px;
+    }
+  }
+}
+
+
+.address-empty {
+  text-align: center;
+  margin-top: 50px;
+
+  .empty-icon {
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #888;
+  }
+}
+
+.address-list {
+  margin-top: 20px;
+
+}
+
+.address-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.2s;
+  margin: 10px;
+
+  &:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .address-text {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+
+    b {
+      font-weight: 600;
+      margin-right: 4px;
+    }
+  }
+
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 6px;
+    font-size: 18px;
+    margin-left: 12px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+.custom-modal {
+
+  .ant-btn-primary {
+    background-color: #ff69b4;
+    border-radius: 0;
+    border: none;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+
+    &:hover,
+    &:focus {
+      background-color: darken(#ff69b4, 10%) !important; 
+    }
+
+    &:disabled {
+      background-color: lighten(#ff69b4, 20%);
+      cursor: not-allowed;
+    }
+  }
+
+  .ant-btn-default {
+    color: #999;
+    border-color: #ccc;
+    border-radius: 0;
+    background-color: white;
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: #666;
+      border-color: #999;
+      background-color: #f5f5f5;
+    }
+
+    &:disabled {
+      color: #ccc;
+      border-color: #eee;
+      cursor: not-allowed;
+    }
+  }
+
+  .ant-modal-header {
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+
+    .ant-modal-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+  }
+
+  .ant-modal-body {
+    padding: 20px 0;
+  }
+
+
+  .ant-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; 
+  }
+}

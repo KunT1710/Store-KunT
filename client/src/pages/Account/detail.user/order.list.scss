@@ -1,0 +1,30 @@
+.order-status-header {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+    font-weight: 400;
+
+    &.active {
+      color: #ee4d2d; // màu cam đỏ active
+      font-weight: 500;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 20%;
+        right: 20%;
+        height: 2px;
+        background-color: #ee4d2d;
+      }
+    }
+  }
+}

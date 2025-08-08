@@ -1,0 +1,51 @@
+.container-privacy {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .header-privacy {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom:1px solid #e0e0e0;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .delete-account {
+    display: flex;
+    justify-content: center;
+
+    .btn-delete-account {
+      display: flex;
+      align-items: center;
+      background-color:#ec407a;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      svg {
+        margin-right: 8px;
+      }
+
+      span {
+        font-weight: 500;
+      }
+
+      &:hover {
+        background-color: #d32f2f; // Đỏ đậm khi hover
+      }
+
+      &:active {
+        background-color: #b71c1c; // Đỏ tối khi click
+      }
+    }
+  }
+}

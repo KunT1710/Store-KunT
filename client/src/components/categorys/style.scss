@@ -1,0 +1,33 @@
+.category {
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    .category-item {
+      text-align: center;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      padding: 12px;
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-5px);
+        background-color: #3ac403;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+  
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 80px;
+        object-fit: contain;
+        margin-bottom: 8px;
+      }
+  
+      p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+  

@@ -1,0 +1,57 @@
+// Biến màu
+$main-pink: #ec407a;
+$main-pink-hover: darken($main-pink, 10%);
+$text-dark: #333;
+$text-light: #666;
+$bg-white: #fff;
+
+.user-profile-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: $bg-white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    color: $main-pink;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .ant-typography {
+    color: $text-light;
+    font-size: 14px;
+  }
+
+  .ant-form {
+    margin-top: 24px;
+
+    .ant-form-item-label > label {
+      color: $text-dark;
+      font-weight: 500;
+    }
+
+    .ant-input {
+      border-radius: 4px;
+
+      &:focus,
+      &:hover {
+        border-color: $main-pink;
+        box-shadow: 0 0 0 2px rgba(236, 64, 122, 0.2);
+      }
+    }
+
+    .ant-btn-primary {
+      background-color: $main-pink;
+      border-color: $main-pink;
+      font-weight: 500;
+
+      &:hover,
+      &:focus {
+        background-color: $main-pink-hover;
+        border-color: $main-pink-hover;
+      }
+    }
+  }
+}

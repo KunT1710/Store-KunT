@@ -1,0 +1,57 @@
+// Biến màu
+$main-pink: #ec407a;
+$main-pink-hover: darken($main-pink, 10%);
+$main-pink-light: lighten($main-pink, 40%);
+$bg-gray: #f5f5f5;
+$text-dark: #333;
+
+// ============================
+// Style chung cho menu
+// ============================
+.ant-menu {
+  background-color: white;
+  border-radius: 8px;
+
+  .ant-menu-submenu-title {
+    color: $text-dark;
+    font-weight: 500;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $main-pink;
+    }
+  }
+
+  .ant-menu-submenu-selected > .ant-menu-submenu-title {
+    color: $main-pink;
+    font-weight: 600;
+  }
+
+  .ant-menu-submenu-arrow {
+    color: $main-pink;
+  }
+
+  .ant-menu-item {
+    color: $text-dark;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $bg-gray;
+      color: $main-pink;
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: $main-pink-light !important; // nền hồng nhạt
+    color: $main-pink !important; // chữ hồng đậm
+    font-weight: 600;
+
+    &:hover {
+      background-color: lighten($main-pink, 35%) !important;
+    }
+  }
+
+  .ant-menu-submenu .ant-menu-item {
+    padding-left: 40px;
+  }
+}

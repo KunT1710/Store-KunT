@@ -1,0 +1,25 @@
+.container-logout {
+  padding: 16px;
+
+  .header-logout h2 {
+    margin-bottom: 16px;
+  }
+
+  .logout-action {
+    .btn-logout {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ff4d4f;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ff7875;
+      }
+    }
+  }
+}

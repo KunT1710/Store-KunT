@@ -1,0 +1,26 @@
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F6F0F0;
+  padding: 10px;
+
+  .login-header__left {
+    display: flex;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+
+.login-header__right {
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    padding: 10px;
+  }
+}

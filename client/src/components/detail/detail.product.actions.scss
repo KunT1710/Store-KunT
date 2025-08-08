@@ -1,0 +1,44 @@
+.purchase-box {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+  .product-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .buy-btn,
+  .cart-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .buy-btn {
+    background-color: #008848;
+    color: white;
+
+    &:hover {
+      background-color: #006c38;
+    }
+  }
+
+  .cart-btn {
+    background-color: #f2f2f2;
+    color: #333;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
