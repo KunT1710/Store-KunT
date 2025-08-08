@@ -72,9 +72,14 @@ export const routes = [
       {
         path: "/cart",
         element: <Cart />,
-      },{
+      },
+      {
         path:"/payment",
         element: <PayMent/>
+      },
+      {
+        path: "/voucher",
+        element: <Voucher />,
       }
     ],
   },
@@ -98,8 +103,5 @@ export const routes = [
     path:"/info-user",
     element: <DetailInfo />,
   },
-  {
-    path: "/voucher",
-    element: <Voucher />,
-  }
+
 ];

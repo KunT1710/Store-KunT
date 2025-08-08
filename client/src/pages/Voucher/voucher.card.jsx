@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Tag, Progress, Tooltip } from "antd";
+import { Tag, Progress, Button, Tooltip } from "antd";
+import { CarOutlined } from "@ant-design/icons";
 
 const VoucherCard = ({ voucher, onApply, isApplied = false }) => {
   const {
@@ -13,117 +14,91 @@ const VoucherCard = ({ voucher, onApply, isApplied = false }) => {
     minOrderValue,
     maxDiscountValue,
     description,
-    calculatedDiscount
+    calculatedDiscount,
+    isActive
   } = voucher;
 
   const percentUsed = quantity > 0 ? Math.floor((usedCount / quantity) * 100) : 0;
   const remaining = quantity - usedCount;
   const isExpired = expirationDate && new Date(expirationDate) < new Date();
   const isOutOfStock = quantity > 0 && usedCount >= quantity;
-  const isDisabled = isExpired || isOutOfStock || isApplied;
 
   // Format discount display
   const formatDiscount = () => {
     if (isPercent) {
       return `${discount}%`;
     } else {
-      return `₫${discount.toLocaleString()}`;
+      return `${discount.toLocaleString()}₫`;
     }
   };
 
-  // Get voucher type display
-  const getTypeDisplay = () => {
-    switch (type) {
-      case 'global': return 'Toàn bộ';
-      case 'product': return 'Sản phẩm';
-      case 'category': return 'Danh mục';
-      case 'user': return 'Cá nhân';
-      default: return 'Khác';
-    }
-  };
+  // Chỉ render voucher còn sử dụng được
+  if (isExpired || isOutOfStock || !isActive) {
+    return null;
+  }
 
   return (
-    <div className="voucher-card">
+    <div style={styles.card}>
       {/* Bên trái */}
-      <div className="voucher-left">
-        <Tag color="red" className="corner-tag">Hot</Tag>
-        <div className="discount-text">
-          {formatDiscount()}
+      <div style={styles.left}>
+        <Tag color="blue" style={styles.cornerTag}>Freeship</Tag>
+        <div style={styles.iconWrapper}>
+          <CarOutlined style={styles.icon} />
         </div>
-        <div className="discount-type">
-          {isPercent ? 'Giảm giá' : 'Giảm tiền'}
-        </div>
-        <div className="voucher-type">
-          {getTypeDisplay()}
-        </div>
+        <div style={styles.platformLabel}>KUNT</div>
       </div>
 
       {/* Bên phải */}
-      <div className="voucher-right">
-        <div className="voucher-header">
-          <Tag color="red" className="limited-tag">
-            <span style={{ fontWeight: 'bold' }}>
-              ⚡ {quantity > 0 ? `Còn ${remaining} lượt` : 'Không giới hạn'}
-            </span>
+      <div style={styles.right}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <Tag color="blue" style={styles.flashTag}>
+            ⚡ {quantity > 0 ? `Còn ${remaining} lượt` : 'Không giới hạn'}
           </Tag>
-          <span className="voucher-code">
-            Mã: <span className="code-text">{code}</span>
+          <span style={{ fontWeight: "bold", fontSize: 16 }}>
+            Giảm <span style={{ fontSize: 18 }}>{formatDiscount()}</span>
           </span>
         </div>
 
         {description && (
-          <div className="voucher-description">
+          <div style={{ margin: "6px 0", fontSize: 14, color: "#666" }}>
             {description}
           </div>
         )}
 
         {minOrderValue > 0 && (
-          <div className="voucher-conditions">
-            Đơn tối thiểu: ₫{minOrderValue.toLocaleString()}
+          <div style={{ margin: "6px 0", fontSize: 14 }}>
+            Đơn Tối Thiểu {minOrderValue.toLocaleString()}₫
           </div>
         )}
 
         {calculatedDiscount && (
-          <div className="voucher-savings">
-            Tiết kiệm: ₫{calculatedDiscount.toLocaleString()}
+          <div style={{ margin: "6px 0", fontSize: 14, color: "#1890ff", fontWeight: "bold" }}>
+            Tiết kiệm: {calculatedDiscount.toLocaleString()}₫
           </div>
         )}
 
         {/* Tiến trình sử dụng */}
         {quantity > 0 && (
-          <Progress percent={percentUsed} showInfo={false} strokeColor="#f5222d" style={{ margin: "8px 0" }} />
+          <Progress percent={percentUsed} showInfo={false} strokeColor="#1890ff" style={{ margin: "8px 0" }} />
         )}
 
-        <div className={`voucher-status ${isDisabled ? 'expired' : isApplied ? 'applied' : 'available'}`}>
-          {isExpired
-            ? "Hết hạn"
-            : isOutOfStock
-              ? "Hết lượt sử dụng"
-              : isApplied
-                ? "Đã áp dụng"
-                : percentUsed > 80
-                  ? "Sắp hết, nhanh tay!"
-                  : "Sẵn sàng sử dụng"}
+        <div style={{ fontSize: 13, color: "#1890ff" }}>
+          {percentUsed > 80 ? "Đang hết nhanh" : "Sẵn sàng sử dụng"}
         </div>
       </div>
 
       {/* Nút lưu */}
-      <div className="voucher-button">
+      <div style={styles.buttonWrapper}>
         <Tooltip title={
-          isExpired ? "Voucher đã hết hạn" :
-            isOutOfStock ? "Voucher đã hết lượt sử dụng" :
-              isApplied ? "Voucher đã được áp dụng" :
-                "Áp dụng mã này"
+          isApplied ? "Voucher đã được lưu" : "Lưu mã này"
         }>
           <Button
             type="primary"
-            disabled={isDisabled}
-            className={`apply-button ${isApplied ? 'applied' : isDisabled ? 'disabled' : 'available'}`}
+            style={styles.saveButton}
+            disabled={isApplied}
             onClick={() => onApply?.(voucher)}
           >
-            {isExpired ? "Hết hạn" :
-              isOutOfStock ? "Hết lượt" :
-                isApplied ? "Đã áp dụng" : "Áp dụng"}
+            {isApplied ? "Đã lưu" : "Lưu"}
           </Button>
         </Tooltip>
       </div>
@@ -131,6 +106,65 @@ const VoucherCard = ({ voucher, onApply, isApplied = false }) => {
   );
 };
 
-
+const styles = {
+  card: {
+    display: "flex",
+    border: "1px solid #e6f7ff",
+    borderRadius: 8,
+    overflow: "hidden",
+    boxShadow: "0 2px 8px rgba(24,144,255,0.1)",
+    position: "relative",
+    width: 600,
+    margin: "20px auto",
+    background: "#fff"
+  },
+  left: {
+    backgroundColor: "#1890ff",
+    color: "#fff",
+    padding: "16px 8px",
+    width: 130,
+    textAlign: "center",
+    position: "relative"
+  },
+  iconWrapper: {
+    padding: "12px",
+    fontSize: 36,
+    marginBottom: 4
+  },
+  icon: {
+    fontSize: 40,
+    color: "#fff"
+  },
+  platformLabel: {
+    fontSize: 14,
+    fontWeight: "bold"
+  },
+  cornerTag: {
+    position: "absolute",
+    top: 4,
+    left: -4,
+    fontSize: 12,
+    zIndex: 1
+  },
+  right: {
+    flex: 1,
+    padding: "12px 16px"
+  },
+  flashTag: {
+    fontSize: 12,
+    backgroundColor: "#40a9ff",
+    color: "#fff",
+    border: "none"
+  },
+  buttonWrapper: {
+    padding: "12px 16px",
+    display: "flex",
+    alignItems: "center"
+  },
+  saveButton: {
+    backgroundColor: "#1890ff",
+    border: "none"
+  }
+};
 
 export default VoucherCard;

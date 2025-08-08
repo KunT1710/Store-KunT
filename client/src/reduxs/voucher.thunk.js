@@ -15,7 +15,7 @@ export const fetchVouchers = createAsyncThunk(
     try {
       dispatch(fetchVouchersStart());
 
-      const response = await fetch(`${API_BASE_URL}/sales`);
+      const response = await fetch(`${API_BASE_URL}/sale`);
       if (!response.ok) {
         throw new Error('Failed to fetch vouchers');
       }
@@ -37,7 +37,7 @@ export const applyVoucher = createAsyncThunk(
   async ({ voucherId, orderData }, { dispatch }) => {
     try {
       // First validate the voucher
-      const validateResponse = await fetch(`${API_BASE_URL}/sales/${voucherId}/validate`);
+      const validateResponse = await fetch(`${API_BASE_URL}/sale/${voucherId}/validate`);
       if (!validateResponse.ok) {
         throw new Error('Voucher validation failed');
       }
@@ -48,7 +48,7 @@ export const applyVoucher = createAsyncThunk(
       }
 
       // Use the voucher
-      const useResponse = await fetch(`${API_BASE_URL}/sales/${voucherId}/use`, {
+      const useResponse = await fetch(`${API_BASE_URL}/sale/${voucherId}/use`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const validateVoucherByCode = createAsyncThunk(
   'voucher/validateVoucherByCode',
   async (code) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/sales/validate-code`, {
+      const response = await fetch(`${API_BASE_URL}/sale/validate-code`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ export const getAvailableVouchers = createAsyncThunk(
   'voucher/getAvailableVouchers',
   async (orderData) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/sales/available`, {
+      const response = await fetch(`${API_BASE_URL}/sale/available`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

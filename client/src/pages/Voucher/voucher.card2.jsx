@@ -1,19 +1,39 @@
 import React from "react";
-import { Tag, Progress, Button } from "antd";
+import { Tag, Progress, Button, Tooltip } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 
-const VoucherCard2 = ({
-  isExpired = false,
-  isOutOfStock = false,
-  discount = 60000,
-  minOrder = 0,
-  progressPercent = 50,
-  isNewCustomer = true,
-  platform = "KUNT",
-  showHot = true
-}) => {
-  // Nếu hết hạn hoặc hết hàng thì không render
-  if (isExpired || isOutOfStock) {
+const VoucherCard2 = ({ voucher, onApply, isApplied = false }) => {
+  const {
+    code,
+    type,
+    discount,
+    isPercent,
+    quantity,
+    usedCount,
+    expirationDate,
+    minOrderValue,
+    maxDiscountValue,
+    description,
+    calculatedDiscount,
+    isActive
+  } = voucher;
+
+  const percentUsed = quantity > 0 ? Math.floor((usedCount / quantity) * 100) : 0;
+  const remaining = quantity - usedCount;
+  const isExpired = expirationDate && new Date(expirationDate) < new Date();
+  const isOutOfStock = quantity > 0 && usedCount >= quantity;
+
+  // Format discount display
+  const formatDiscount = () => {
+    if (isPercent) {
+      return `${discount}%`;
+    } else {
+      return `${discount.toLocaleString()}₫`;
+    }
+  };
+
+  // Chỉ render voucher còn sử dụng được
+  if (isExpired || isOutOfStock || !isActive) {
     return null;
   }
 
@@ -21,42 +41,66 @@ const VoucherCard2 = ({
     <div style={styles.card}>
       {/* Bên trái */}
       <div style={styles.left}>
-        {showHot && <Tag color="red" style={styles.cornerTag}>Hot</Tag>}
+        <Tag color="red" style={styles.cornerTag}>Hot</Tag>
         <div style={styles.iconWrapper}>
           <ShoppingOutlined style={styles.icon} />
         </div>
-        <div style={styles.platformLabel}>{platform}</div>
+        <div style={styles.platformLabel}>KUNT</div>
       </div>
 
       {/* Bên phải */}
       <div style={styles.right}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <Tag color="red" style={styles.flashTag}>⚡ Số lượng có hạn</Tag>
+          <Tag color="red" style={styles.flashTag}>
+            ⚡ {quantity > 0 ? `Còn ${remaining} lượt` : 'Không giới hạn'}
+          </Tag>
           <span style={{ fontWeight: "bold", fontSize: 16 }}>
-            Giảm <span style={{ fontSize: 18 }}>₫{discount.toLocaleString()}</span>
+            Giảm <span style={{ fontSize: 18 }}>{formatDiscount()}</span>
           </span>
         </div>
 
-        <div style={{ margin: "6px 0", fontSize: 14 }}>
-          Đơn Tối Thiểu ₫{minOrder.toLocaleString()}
-        </div>
-
-        {isNewCustomer && (
-          <div style={{ marginBottom: 8 }}>
-            <Tag style={styles.customerTag} bordered={true}>Dành cho bạn mới</Tag>
+        {description && (
+          <div style={{ margin: "6px 0", fontSize: 14, color: "#666" }}>
+            {description}
           </div>
         )}
 
-        <Progress percent={progressPercent} showInfo={false} strokeColor="#f5222d" />
+        {minOrderValue > 0 && (
+          <div style={{ margin: "6px 0", fontSize: 14 }}>
+            Đơn Tối Thiểu {minOrderValue.toLocaleString()}₫
+          </div>
+        )}
+
+        {calculatedDiscount && (
+          <div style={{ margin: "6px 0", fontSize: 14, color: "#f53d2d", fontWeight: "bold" }}>
+            Tiết kiệm: {calculatedDiscount.toLocaleString()}₫
+          </div>
+        )}
+
+        {/* Tiến trình sử dụng */}
+        {quantity > 0 && (
+          <Progress percent={percentUsed} showInfo={false} strokeColor="#f5222d" style={{ margin: "8px 0" }} />
+        )}
 
         <div style={{ fontSize: 13, color: "#f5222d" }}>
-          Đang hết nhanh
+          {percentUsed > 80 ? "Đang hết nhanh" : "Sẵn sàng sử dụng"}
         </div>
       </div>
 
       {/* Nút lưu */}
       <div style={styles.buttonWrapper}>
-        <Button type="primary" style={styles.saveButton}>Lưu</Button>
+        <Tooltip title={
+          isApplied ? "Voucher đã được lưu" : "Lưu mã này"
+        }>
+          <Button
+            type="primary"
+            style={styles.saveButton}
+            disabled={isApplied}
+            onClick={() => onApply?.(voucher)}
+          >
+            {isApplied ? "Đã lưu" : "Lưu"}
+          </Button>
+        </Tooltip>
       </div>
     </div>
   );
