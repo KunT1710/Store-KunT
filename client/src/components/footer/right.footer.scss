@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.right-footer {
+  padding: 32px 24px 16px 24px;
+  min-width: 350px;
+  font-family: 'Roboto', sans-serif;
+  color: #222;
+  box-sizing: border-box;
+}
+
+.right-footer .ant-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+// Tiêu đề
+.right-footer h2 {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+// Danh sách
+.right-footer ul {
+  list-style: disc inside;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.right-footer li {
+  margin-bottom: 8px;
+  color: #222;
+  &:hover{
+    color: #a06a6a;
+    cursor: pointer;
+  }
+}
+.right-footer hr, 
+.right-footer .footer-divider {
+  border: none;
+  border-top: 2px solid #222;
+  margin: 18px 0 12px 0;
+  width: 100%;
+}
+
+// Nhóm icon mạng xã hội
+.right-footer .ion-gr {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  font-size: 1.5rem;
+}
+
+.right-footer .ion-gr svg {
+  color: #222;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.right-footer .ion-gr svg:hover {
+  color: #a06a6a;
+}

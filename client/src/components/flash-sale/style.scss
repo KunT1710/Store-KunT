@@ -1,0 +1,89 @@
+.container--flash-sale {
+  background: linear-gradient(to bottom, #FFF7DD, #FF891A);
+  border-radius: 0 0 10px 10px;
+  border-top: 1px solid#FF891A;
+  padding: 20px;
+  position: relative;
+  margin: 40px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  padding-top: 40px;
+}
+
+.flash-sale-header {
+  position: absolute;
+  top: -15px;
+  left: -20px;
+
+  .header-title {
+    background-color: #FF891A;
+    color: #fff;
+    padding: 8px 32px;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 12px 0 12px 12px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      z-index: 1;
+    }
+
+    &::after {
+      right: -11px;
+      bottom: 17px;
+      border-bottom: 23px solid #FFAC57;
+      border-right: 11px solid transparent;
+    }
+  }
+
+  .header-bolt {
+    position: absolute;
+    top: -8px;
+    left: 140px;
+  }
+}
+
+.lightning-bolt {
+  width: 24px;
+  height: 40px;
+  background: #ffd600;
+  clip-path: polygon(50% 0%, 65% 0%,
+      40% 45%, 70% 45%,
+      30% 100%, 15% 100%,
+      40% 55%, 10% 55%);
+  transition: transform 0.3s;
+}
+
+.lightning-bolt:hover {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.view-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+
+  span {
+    background-color: #ffffff;
+    color: #ff4f00;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #ffe5d0;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+}

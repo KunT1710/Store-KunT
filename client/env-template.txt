@@ -1,0 +1,52 @@
+# ========================================
+# CLIENT ENVIRONMENT VARIABLES TEMPLATE
+# ========================================
+# Copy this content to .env file in client folder
+# ========================================
+
+# ===== REACT APP CONFIGURATION =====
+REACT_APP_NAME=E-commerce Store
+REACT_APP_VERSION=1.0.0
+REACT_APP_DESCRIPTION=Modern E-commerce Platform
+
+# ===== API CONFIGURATION =====
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_API_VERSION=v1
+REACT_APP_BASE_URL=http://localhost:3000
+
+# ===== BACKEND URL =====
+REACT_APP_BACKEND_URL=http://localhost:5000
+
+# ===== FEATURE FLAGS =====
+REACT_APP_FEATURE_ANALYTICS=true
+REACT_APP_FEATURE_NOTIFICATIONS=true
+REACT_APP_FEATURE_REVIEWS=true
+REACT_APP_FEATURE_WISHLIST=true
+
+# ===== PAYMENT CONFIGURATION =====
+# Stripe
+REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+
+# PayPal
+REACT_APP_PAYPAL_CLIENT_ID=your_paypal_client_id
+REACT_APP_PAYPAL_MODE=sandbox
+
+# ===== ANALYTICS =====
+REACT_APP_GOOGLE_ANALYTICS_ID=GA_MEASUREMENT_ID
+REACT_APP_FACEBOOK_PIXEL_ID=your_facebook_pixel_id
+
+# ===== SOCIAL LOGIN =====
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+REACT_APP_FACEBOOK_APP_ID=your_facebook_app_id
+
+# ===== FILE UPLOAD =====
+REACT_APP_UPLOAD_URL=http://localhost:5000/api/upload
+REACT_APP_MAX_FILE_SIZE=10485760
+
+# ===== CACHE CONFIGURATION =====
+REACT_APP_CACHE_TTL=3600000
+REACT_APP_CACHE_PREFIX=ecommerce_client
+
+# ===== DEBUG MODE =====
+REACT_APP_DEBUG=true
+REACT_APP_LOG_LEVEL=debug 

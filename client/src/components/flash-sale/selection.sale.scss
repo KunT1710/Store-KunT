@@ -1,0 +1,132 @@
+.selection-sale {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid #f90;
+  border-radius: 8px;
+  background: #fff7e6;
+  font-size: 14px;
+  position: absolute;
+  top: -30px;
+  right: -20px;
+
+  .sale-time {
+    color: #ff4f00;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .counter-sale {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .flash-text {
+      font-weight: bold;
+      color: #ff7a00;
+      margin-right: 4px;
+    }
+
+    .time-box {
+      background-color: #ff7a00;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .colon {
+      font-weight: bold;
+      color: #ff7a00;
+    }
+
+    .flash-expired {
+      background-color: #ff4444;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 12px;
+      animation: pulse 2s infinite;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .view-all-sale {
+    color: #ff4f00;
+    font-weight: bold;
+    margin-left: auto;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .active {
+    background: linear-gradient(to right, #ffb86c, #ff891a);
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #ff891a;
+    box-shadow: 0 2px 8px rgba(255, 137, 26, 0.08);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+
+  .counter-sale.active-counter {
+    background: linear-gradient(to right, #ffb86c, #ff891a);
+    border-radius: 8px;
+    border: 1.5px solid #ff891a;
+    padding: 2px 12px;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255, 137, 26, 0.08);
+
+    .flash-text {
+      color: #fff;
+    }
+
+    .time-box {
+      background: #fff;
+      color: #ff891a;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .colon {
+      color: #fff;
+    }
+
+    .flash-expired {
+      background-color: #fff;
+      color: #ff4444;
+      border: 1px solid #ff4444;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
